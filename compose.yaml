@@ -1,0 +1,11 @@
+services:
+  mkv-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mkv-muxing-dashboard
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./docker-data:/data
+    restart: unless-stopped

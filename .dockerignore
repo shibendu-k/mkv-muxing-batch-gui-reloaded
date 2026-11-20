@@ -1,0 +1,8 @@
+.git
+.github
+.venv
+build
+dist
+docker-data
+__pycache__
+*.pyc

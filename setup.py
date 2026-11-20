@@ -31,7 +31,7 @@ taskbar_typelib = Path("Resources/DLL/TaskbarLib.tlb")
 if sys.platform == "win32" and taskbar_typelib.exists():
     include_files.append([str(taskbar_typelib), str(taskbar_typelib)])
 
-for tool in ["mkvmerge", "mkvpropedit"]:
+for tool in ["mkvmerge", "mkvextract", "mkvinfo", "mkvpropedit"]:
     src = f"Resources/Tools/{system}/{tool}{program_suffix}"
     dst = f"Resources/Tools/{system}/{tool}{program_suffix}"
     lib = f"Resources/Tools/{system}/lib"

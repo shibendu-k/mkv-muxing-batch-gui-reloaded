@@ -1,0 +1,29 @@
+:root { color-scheme: dark; --bg:#10151d; --panel:#192231; --line:#334155; --text:#e5edf7; --muted:#9fb0c3; --accent:#3b82f6; --ok:#22c55e; --bad:#ef4444; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:14px system-ui,sans-serif; }
+header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--line); }
+h1,h2 { margin-top:0; }
+main { display:grid; grid-template-columns:minmax(280px,1fr) minmax(420px,1.5fr); gap:16px; padding:16px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; min-width:0; }
+.panel:last-child { grid-column:1 / -1; }
+.row { display:flex; gap:8px; align-items:center; }
+button { border:0; border-radius:6px; background:var(--accent); color:white; padding:8px 12px; cursor:pointer; }
+button.secondary { background:#475569; }
+button.tab { background:transparent; color:var(--muted); border-radius:6px 6px 0 0; }
+button.tab.active { background:var(--line); color:white; }
+.tabs { border-bottom:1px solid var(--line); margin-bottom:12px; }
+.tab-panel { display:none; }
+.tab-panel.active { display:grid; gap:10px; }
+label { display:grid; gap:5px; color:var(--muted); }
+input,textarea,select { width:100%; border:1px solid var(--line); border-radius:6px; background:#0e1520; color:var(--text); padding:9px; }
+textarea { min-height:70px; resize:vertical; }
+.files { display:grid; gap:4px; margin-top:12px; max-height:65vh; overflow:auto; }
+.file { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding:7px 4px; }
+.file button { padding:4px 8px; }
+.jobs { display:grid; gap:8px; }
+.job { border:1px solid var(--line); border-radius:8px; padding:10px; }
+.job-header { display:flex; justify-content:space-between; gap:12px; }
+.status-running { color:#60a5fa; } .status-completed { color:var(--ok); } .status-failed { color:var(--bad); }
+pre { white-space:pre-wrap; word-break:break-word; max-height:400px; overflow:auto; background:#0e1520; padding:10px; border-radius:6px; }
+#tool-status { color:var(--muted); text-align:right; }
+@media (max-width:900px) { main { grid-template-columns:1fr; } .panel:last-child { grid-column:auto; } header { align-items:flex-start; } }
