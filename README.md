@@ -141,10 +141,35 @@ You can manually update the mkvmerge version for portable version, but do this o
 ```bash
 # Navigate to the app's installation directory, e.g. on Windows:
 "C:\\Program Files (x86)\\MKV Muxing Batch GUI"
-# Go to Resources\\Tools\\ [your operating system], and replace mkvmerge.exe and mkvpropedit.exe with the newer version you have
+# Go to Resources\\Tools\\[your operating system], and replace mkvmerge.exe,
+# mkvextract.exe, mkvinfo.exe, and mkvpropedit.exe with newer matching binaries
 ```
 
 > For linux users, you need to install mkvtoolnix from your distro repository and the app will automatically detect it.
+
+## Browser dashboard and Docker
+
+Run the browser dashboard on Ubuntu or any Docker-enabled Linux host:
+
+```bash
+docker compose up --build -d
+```
+
+Open `http://127.0.0.1:8080`. Uploaded and generated media is stored in
+`./docker-data` and remains available across container restarts.
+
+The container installs MKVToolNix from the official MKVToolNix Ubuntu package
+repository for Ubuntu 24.04. It exposes `mkvmerge`, `mkvextract`, `mkvinfo`,
+and `mkvpropedit` through:
+
+- File upload/download and media identification
+- Muxing with a title, attachments, and arbitrary `mkvmerge` arguments
+- Track, attachment, chapter, tag, timestamp, and cue extraction
+- Track and attachment editing through `mkvpropedit`
+- A raw, no-shell command runner for the latest CLI options
+
+The dashboard binds to loopback by default. Put a reverse proxy with HTTPS and
+authentication in front of it before exposing the port to an untrusted network.
 
 ## 🙏Attribution
 

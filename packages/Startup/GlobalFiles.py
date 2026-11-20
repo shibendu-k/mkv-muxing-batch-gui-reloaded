@@ -294,6 +294,14 @@ try:
     # this use to check mkvtoolnix tool
     logging.basicConfig(encoding="utf-8", level=logging.DEBUG)
     Use_System_PG = False
+    try:
+        MKVEXTRACT_PATH = get_program_path("mkvextract")
+    except (FileNotFoundError, RuntimeError):
+        MKVEXTRACT_PATH = None
+    try:
+        MKVINFO_PATH = get_program_path("mkvinfo")
+    except (FileNotFoundError, RuntimeError):
+        MKVINFO_PATH = None
     MKVPROPEDIT_PATH = get_program_path("mkvpropedit")
     MKVMERGE_PATH = get_program_path("mkvmerge")
     ENVIRONMENT = os.environ.copy()

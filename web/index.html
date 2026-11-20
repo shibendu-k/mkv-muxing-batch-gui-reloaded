@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MKV Muxing Dashboard</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header>
+    <h1>MKV Muxing Dashboard</h1>
+    <div id="tool-status"></div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Files</h2>
+      <div class="row">
+        <input id="upload-file" type="file" multiple>
+        <button id="upload-button">Upload</button>
+        <button id="refresh-files" class="secondary">Refresh</button>
+      </div>
+      <div id="files" class="files"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Actions</h2>
+      <div class="tabs">
+        <button class="tab active" data-tab="mux">Mux</button>
+        <button class="tab" data-tab="info">Identify</button>
+        <button class="tab" data-tab="extract">Extract</button>
+        <button class="tab" data-tab="propedit">Propedit</button>
+        <button class="tab" data-tab="raw">Raw CLI</button>
+      </div>
+
+      <div id="mux" class="tab-panel active">
+        <label>Source paths (one per line)<textarea id="mux-sources"></textarea></label>
+        <label>Output path<input id="mux-output" value="output/result.mkv"></label>
+        <label>Title<input id="mux-title"></label>
+        <label>Attachment paths (one per line)<textarea id="mux-attachments"></textarea></label>
+        <label>Advanced mkvmerge arguments (JSON array)<textarea id="mux-args">[]</textarea></label>
+        <button id="mux-run">Start mux</button>
+      </div>
+
+      <div id="info" class="tab-panel">
+        <label>Source path<input id="info-source"></label>
+        <button id="info-run">Inspect</button>
+        <pre id="info-output"></pre>
+      </div>
+
+      <div id="extract" class="tab-panel">
+        <label>Source path<input id="extract-source"></label>
+        <label>Mode<select id="extract-mode">
+          <option value="tracks">tracks</option>
+          <option value="attachments">attachments</option>
+          <option value="chapters">chapters</option>
+          <option value="tags">tags</option>
+          <option value="timestamps_v2">timestamps_v2</option>
+          <option value="cuesheet">cuesheet</option>
+          <option value="cues">cues</option>
+          <option value="cues_v2">cues_v2</option>
+        </select></label>
+        <label>Track items (id:destination, one per line)<textarea id="extract-items"></textarea></label>
+        <label>Advanced arguments (JSON array)<textarea id="extract-args">[]</textarea></label>
+        <button id="extract-run">Extract</button>
+      </div>
+
+      <div id="propedit" class="tab-panel">
+        <label>File path<input id="propedit-file"></label>
+        <label>Edits (JSON array)<textarea id="propedit-edits">[]</textarea></label>
+        <label>Advanced arguments (JSON array)<textarea id="propedit-args">[]</textarea></label>
+        <button id="propedit-run">Modify</button>
+      </div>
+
+      <div id="raw" class="tab-panel">
+        <label>Tool<select id="raw-tool">
+          <option>mkvmerge</option><option>mkvextract</option>
+          <option>mkvinfo</option><option>mkvpropedit</option>
+        </select></label>
+        <label>Arguments (JSON array)<textarea id="raw-args">[]</textarea></label>
+        <button id="raw-run">Run command</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Jobs</h2>
+      <button id="refresh-jobs" class="secondary">Refresh</button>
+      <div id="jobs"></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
